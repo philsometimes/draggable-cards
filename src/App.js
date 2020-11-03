@@ -2,15 +2,34 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from 'emotion-theming'
 import theme from './theme.js'
-import { Box, Flex, Heading, Link, Image, Button } from 'rebass'
+import { Box, Flex, Heading, Text, Link, Image, Button } from 'rebass'
 import ReactTooltip from 'react-tooltip'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import styled from '@emotion/styled'
 import tiles from './tiles'
 import content from './content'
 import svgIn from './assets/in.svg'
 import svgOut from './assets/out.svg'
 import svgReset from './assets/reset.svg'
 
+const StyledTooltip = styled(ReactTooltip)`
+  color: ${props => props.theme.colors.muted}!important;
+  background-color: ${props => props.theme.colors.text}!important;
+  font-size: ${props => props.theme.fontSizes.tiny};
+  font-family: ${props => props.theme.fonts.body};
+  &.place-top:after {
+    border-top-color: ${props => props.theme.colors.text}!important;
+   }
+  &.place-left:after {
+    border-left-color: ${props => props.theme.colors.text}!important;
+  }
+  &.place-right:after {
+    border-right-color: ${props => props.theme.colors.text}!important;
+  }
+  &.place-bottom:after {
+    border-bottom-color: ${props => props.theme.colors.text}!important;
+  }
+`
 
 const TileGrid = ({list, states, setStates, children}) => {
   const mappedTiles = list.map( item =>
@@ -100,8 +119,8 @@ const Viewer = ({list}) => {
         doubleClick={{mode:'reset'}}
         wheel={{disabled:true}}
         pinch={{disabled:true}}
-        zoomIn={{step:20}}
-        zoomOut={{step:20}}
+        zoomIn={{step:15}}
+        zoomOut={{step:15}}
         >
         {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
           <>
@@ -115,7 +134,7 @@ const Viewer = ({list}) => {
                 p: 1,
                 m: 2,
               }} onClick={zoomIn}>
-                <Image src={svgIn} sx={{width: 12, height:12}}/>
+                <Image src={svgIn} sx={{width: 16, height:16}}/>
               </Button>
               <Button sx={{
                 cursor: 'pointer',
@@ -124,7 +143,7 @@ const Viewer = ({list}) => {
                 p: 1,
                 m: 2,
               }} onClick={zoomOut}>
-                <Image src={svgOut} sx={{width: 12, height:12}}/>
+                <Image src={svgOut} sx={{width: 16, height:16}}/>
               </Button>
               <Button sx={{
                 cursor: 'pointer',
@@ -133,14 +152,14 @@ const Viewer = ({list}) => {
                 p: 1,
                 m: 2,
               }} onClick={resetTransform}>
-                <Image src={svgReset} sx={{width: 12, height:12}}/>
+                <Image src={svgReset} sx={{width: 16, height:16}}/>
               </Button>
             </Flex>
             <TransformComponent>
               <Image
                 src={view}
                 alt="infographic"
-                sx={{maxWidth:'100%', width:'auto', height:'100%'}}
+                sx={{maxWidth:'100%', width:'100%', height:'100%'}}
                 />
             </TransformComponent>
           </>
@@ -149,34 +168,24 @@ const Viewer = ({list}) => {
       )}
       {!view && (
         <Flex sx={{flexDirection:'column',justifyContent:'center',alignItems:'center',height:'100%'}}>
-          <Heading sx={{fontSize:'small', textAlign:'center',lineHeight:'42px', color:'text'}}>Choose a number to view the associated infographic. <br/> Use the + and - buttons to zoom. <br/> Click and drag to pan. <br/> Double-click to reset view.</Heading>
+          <Heading sx={{fontSize:'small', textAlign:'center',lineHeight:'small', color:'text'}}>Choose a number to view the associated infographic. <br/> Use the + and - buttons to zoom. <br/> Click and drag to pan. <br/> Double-click to reset view.</Heading>
+          <Text sx={{fontFamily:'body',fontSize:'tiny', lineHeight:'medium',color:'muted'}}>Text and graphics: <Link sx={{color:'secondary'}} href="https://www.canva.com/learn/design-elements-principles/">Mary Stribley | Canva</Link></Text>
         </Flex>
       )}
     </Flex>
   )
 }
 
-// <Box
-//   sx={{
-//     backgroundImage:`url(${view})`,
-//     backgroundSize:'contain',
-//     backgroundRepeat:'no-repeat',
-//     backgroundPosition:'center',
-//     height:'100%',
-//     width:'100%',
-//   }}
-// />
 
 const App = () => {
   const [tileStates, setTileStates] = useState([])
     return (
       <ThemeProvider theme={theme}>
-          <ReactTooltip
+          <StyledTooltip
             id="main"
             type="dark"
             effect="solid"
             multiline={true}
-
           />
           <TileGrid list={tiles} states={tileStates} setStates={setTileStates}>
             <Viewer list={content}/>

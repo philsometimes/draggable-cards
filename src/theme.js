@@ -17,8 +17,9 @@ export default {
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.125,
-    history:1.25
+    small: 2,
+    medium: 4,
+    large: 6,
   },
   letterSpacings: {
     body: 1,
@@ -26,7 +27,7 @@ export default {
   },
   colors: {
     text: '#1F0D0D',
-    muted: '#E2E1DE',
+    muted: '#BCB1AC',
     background: '#f9f4f2',
     foreground: '#ffffff',
     primary: '#F1A61E',

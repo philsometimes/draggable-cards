@@ -36,7 +36,7 @@ const repetition = {
 const negativespace = {
   'name':'negativespace',
   'url':negativespaceUrl,
-  'text':'The space in between <br> Create clever images'}
+  'text':'The space in between elements<br> Create clever images'}
 const symmetry = {
   'name':'symmetry',
   'url':symmetryUrl,
