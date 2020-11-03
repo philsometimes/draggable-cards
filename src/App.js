@@ -148,7 +148,9 @@ const Viewer = ({list}) => {
         </TransformWrapper>
       )}
       {!view && (
-        <Heading>Choose a number to view the associated infographic. Pinch in/out or scroll up/down to zoom; click and drag to scroll. Double-click to reset view.</Heading>
+        <Flex sx={{flexDirection:'column',justifyContent:'center',alignItems:'center',height:'100%'}}>
+          <Heading sx={{fontSize:'small', textAlign:'center',lineHeight:'42px', color:'text'}}>Choose a number to view the associated infographic. <br/> Use the + and - buttons to zoom. <br/> Click and drag to pan. <br/> Double-click to reset view.</Heading>
+        </Flex>
       )}
     </Flex>
   )
