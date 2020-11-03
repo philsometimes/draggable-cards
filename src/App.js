@@ -2,10 +2,15 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from 'emotion-theming'
 import theme from './theme.js'
-import { Box, Flex } from 'rebass'
+import { Box, Flex, Heading, Link, Image, Button } from 'rebass'
 import ReactTooltip from 'react-tooltip'
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import tiles from './tiles'
 import content from './content'
+import svgIn from './assets/in.svg'
+import svgOut from './assets/out.svg'
+import svgReset from './assets/reset.svg'
+
 
 const TileGrid = ({list, states, setStates, children}) => {
   const mappedTiles = list.map( item =>
@@ -66,25 +71,99 @@ const TileGrid = ({list, states, setStates, children}) => {
   )
 }
 
-const Viewer = ({list, children}) => {
-  const [view, setView] = useState(0)
-  const links = list.map( x =>
-    x
+const Viewer = ({list}) => {
+  const [view, setView] = useState(null)
+  const links = list.map( (x, i) =>
+    <Link sx={{cursor:'pointer', mx:10, fontFamily:'body', fontWeight:'bold', color:'secondary'}} onClick={()=>setView(x)}>{i}</Link>
   )
   return (
     <Flex
       sx={{
         flexDirection:'column',
+        alignItems:'center',
         bg:'background',
         height:'100%',
         width:'100%',
         gridArea: '2 / 2 / 5 / 6',
       }}
     >
-      {children}
+      <Flex sx={{
+        flexDirection:'row',
+        my:10,
+      }}>
+        {links}
+      </Flex>
+      {view && (
+        <TransformWrapper
+        options={{minScale:0.5}}
+        defaultScale={0.75}
+        doubleClick={{mode:'reset'}}
+        wheel={{disabled:true}}
+        pinch={{disabled:true}}
+        zoomIn={{step:20}}
+        zoomOut={{step:20}}
+        >
+        {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+          <>
+            <Flex sx={{
+              flexDirection:'row'
+            }}>
+              <Button sx={{
+                cursor: 'pointer',
+                border: 'none',
+                bg: 'transparent',
+                p: 1,
+                m: 2,
+              }} onClick={zoomIn}>
+                <Image src={svgIn} sx={{width: 12, height:12}}/>
+              </Button>
+              <Button sx={{
+                cursor: 'pointer',
+                border: 'none',
+                bg: 'transparent',
+                p: 1,
+                m: 2,
+              }} onClick={zoomOut}>
+                <Image src={svgOut} sx={{width: 12, height:12}}/>
+              </Button>
+              <Button sx={{
+                cursor: 'pointer',
+                border: 'none',
+                bg: 'transparent',
+                p: 1,
+                m: 2,
+              }} onClick={resetTransform}>
+                <Image src={svgReset} sx={{width: 12, height:12}}/>
+              </Button>
+            </Flex>
+            <TransformComponent>
+              <Image
+                src={view}
+                alt="infographic"
+                sx={{maxWidth:'100%', width:'auto', height:'100%'}}
+                />
+            </TransformComponent>
+          </>
+        )}
+        </TransformWrapper>
+      )}
+      {!view && (
+        <Heading>Choose a number to view the associated infographic. Pinch in/out or scroll up/down to zoom; click and drag to scroll. Double-click to reset view.</Heading>
+      )}
     </Flex>
   )
 }
+
+// <Box
+//   sx={{
+//     backgroundImage:`url(${view})`,
+//     backgroundSize:'contain',
+//     backgroundRepeat:'no-repeat',
+//     backgroundPosition:'center',
+//     height:'100%',
+//     width:'100%',
+//   }}
+// />
 
 const App = () => {
   const [tileStates, setTileStates] = useState([])
@@ -98,7 +177,7 @@ const App = () => {
 
           />
           <TileGrid list={tiles} states={tileStates} setStates={setTileStates}>
-            <Viewer />
+            <Viewer list={content}/>
           </TileGrid>
       </ThemeProvider>
     );

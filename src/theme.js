@@ -1,8 +1,7 @@
 export default {
   fonts: {
     body: '"Nunito", sans-serif',
-    heading: '"Germania One", cursive',
-    symbol: '"M PLUS Rounded 1c", sans-serif'
+    heading: '"Nunito", sans-serif',
   },
   fontSizes: {
         'tiny': '1.75vmin',
@@ -26,47 +25,15 @@ export default {
     heading: 1.5,
   },
   colors: {
-    text: '#3D2642',
-    muted: '#aaaaaa',
+    text: '#1F0D0D',
+    muted: '#E2E1DE',
     background: '#f9f4f2',
     foreground: '#ffffff',
-    primary: '#54345B',
-    secondary: '#F58B00',
-    tertiary: '#96749E',
+    primary: '#F1A61E',
+    secondary: '#7EC18C',
+    tertiary: '#EF6D22',
+    quaternary: '#ECD32D',
   },
   space: [0, 4, 8, 16, 32, 48],
   breakpoints: ['40em', '64em', '80em'],
-  buttons: {
-    primary: {
-      bg: 'primary',
-      cursor: 'pointer'
-    },
-    tertiary: {
-      bg: 'darkgreen',
-      color: 'primary',
-      border: '3px solid',
-      borderColor: 'lightgreen',
-      cursor: 'pointer'
-    },
-    nope: {
-      bg: 'transparent',
-      color: 'muted',
-      border: '3px solid',
-      borderColor: 'tertiary',
-      cursor: 'not-allowed'
-    },
-    outline: {
-      bg: 'transparent',
-      color: 'darkgreen',
-      border: '3px solid',
-      borderColor: 'darkgreen',
-      cursor: 'pointer'
-    },
-    invisible: {
-      bg: 'transparent',
-      color: 'darkgreen',
-      border: '0px solid',
-      cursor: 'pointer'
-    },
-  },
 };
