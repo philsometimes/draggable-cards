@@ -117,8 +117,10 @@ const Viewer = ({list, setStates}) => {
         options={{minScale:0.5}}
         defaultScale={0.75}
         doubleClick={{mode:'reset'}}
+        zoomIn={{step:10}}
+        zoomOut={{step:10}}
+        wheel={{disabled:true}}
         pinch={{disabled:true}}
-      
         >
         {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
           <>
