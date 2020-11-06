@@ -90,10 +90,10 @@ const TileGrid = ({list, states, setStates, children}) => {
   )
 }
 
-const Viewer = ({list}) => {
+const Viewer = ({list, setStates}) => {
   const [view, setView] = useState(null)
   const links = list.map( (x, i) =>
-    <Link sx={{cursor:'pointer', mx:10, fontFamily:'body', fontWeight:'bold', color:'secondary'}} onClick={()=>setView(x)}>{i}</Link>
+    <Link sx={{cursor:'pointer', mx:10, fontFamily:'body', fontWeight:'bold', color:'secondary'}} onClick={()=>{setView(x);setStates([])}}>{i}</Link>
   )
   return (
     <Flex
@@ -188,7 +188,7 @@ const App = () => {
             multiline={true}
           />
           <TileGrid list={tiles} states={tileStates} setStates={setTileStates}>
-            <Viewer list={content}/>
+            <Viewer list={content} setStates={setTileStates}/>
           </TileGrid>
       </ThemeProvider>
     );
