@@ -15,8 +15,7 @@ import isis from './assets/infographics/isis.png'
 import homelessness from './assets/infographics/homelessness.png'
 import healthcare from './assets/infographics/healthcare.jpg'
 import iran from './assets/infographics/iran.jpg'
-
-
+import highslows from './assets/infographics/highslows.jpg'
 
 const content = [
   llproto,
@@ -24,8 +23,8 @@ const content = [
   migration,
   ekg,
   healthcare,
+  highslows,
   spacejunk,
-  dataviz,
   koreanwar,
   histlife,
   longmarch,
@@ -35,7 +34,8 @@ const content = [
   tools,
   isis,
   plotlines,
-  iran
+  dataviz,
+  iran,
 ]
 
 export default content
