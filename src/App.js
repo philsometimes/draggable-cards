@@ -108,6 +108,7 @@ const Viewer = ({list, setStates}) => {
     >
       <Flex sx={{
         flexDirection:'row',
+        flexWrap:'wrap',
         my:10,
       }}>
         {links}

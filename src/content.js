@@ -16,6 +16,10 @@ import homelessness from './assets/infographics/homelessness.png'
 import healthcare from './assets/infographics/healthcare.jpg'
 import iran from './assets/infographics/iran.jpg'
 import highslows from './assets/infographics/highslows.jpg'
+import antagonists from './assets/infographics/antagonist_netbooks.jpg'
+import slack0 from './assets/infographics/slack-imgs.png'
+import slack1 from './assets/infographics/slack-imgs-1.png'
+import slack2 from './assets/infographics/slack-imgs-2.png'
 
 const content = [
   llproto,
@@ -36,6 +40,10 @@ const content = [
   plotlines,
   dataviz,
   iran,
+  antagonists,
+  slack0,
+  slack1,
+  slack2,
 ]
 
 export default content
